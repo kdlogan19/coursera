@@ -1,0 +1,23 @@
+name = input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+handle = open(name)
+result = {}
+mails = []
+for lines in handle:
+    if lines.startswith('From'):
+        words = lines.split()
+        print(words)
+        mails.append(words[1])
+
+print(mails)
+for mail in mails:
+          result[mail] = result.get(mail,0) + 1 
+print(result)
+maxkey = None
+maxvalue = 0
+
+for key,value in result.items():
+  if value > maxvalue:
+    maxvalue = value
+    maxkey = key
+print(maxkey, maxvalue)
